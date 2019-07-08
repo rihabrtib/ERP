@@ -1,0 +1,137 @@
+<div class="panel-header panel-header-sm">
+
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" (ngSubmit)="inSubmit()" role="tab"
+                aria-controls="nav-home" aria-selected="true">Liste</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"  role="tab"
+                aria-controls="nav-profile" aria-selected="false">Ajouter une formation</a>
+
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+
+                    <h4 class="card-title"> Liste des formations</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <th>
+                            Name
+                          </th>
+                          <th>
+                            Nom
+                          </th>
+                          <th>
+                            Type
+                          </th>
+                          <th class="text-right">
+
+                          </th>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let users of user">
+                            <td>{{user.username}}</td>
+                            <td>{{user.pass}}</td>
+                            <td>{{user.email}}</td>
+
+
+                            <td class="text-right">
+                              <button type="button" rel="tooltip" title=""
+                                class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
+                                data-original-title="Edit Task">
+                                <i class="now-ui-icons ui-2_settings-90"></i>
+                              </button>
+                              <button type="button" rel="tooltip" title=""
+                                class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                                data-original-title="Remove">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="title">Ajouter une formation</h5>
+                  </div>
+                  <div class="card-body">
+
+
+
+                    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+
+                      <h5 *ngIf="success? redirect():false" >
+                        <p>Your inscription is done!</p>
+                         
+                      </h5>
+                      
+                    
+                      <label>
+                        Name:
+                        <input type="text" formControlName="username">
+                        <div *ngIf="submitted && messageForm.controls.username.errors" class="error">
+                          <div *ngIf="messageForm.controls.username.errors.required">Your name is required</div>
+                        </div>
+                      </label>
+                      <label>
+                        email:
+                        <input type="text" formControlName="email">
+                        <div *ngIf="submitted && messageForm.controls.email.errors" class="error">
+                          <div *ngIf="messageForm.controls.email.errors.required">Your email is required</div>
+                        </div>
+                      </label>
+                      <label>
+                        Password:
+                        <input type="password" formControlName="pass">
+                        <div *ngIf="submitted && messageForm.controls.pass.errors" class="error">
+                          <div *ngIf="messageForm.controls.pass.errors.required">Your password is required</div>
+                        </div>
+                      </label>
+                    
+                      <label>
+                        Birthday:
+                        <input type="date" formControlName="bd">
+                        <div *ngIf="submitted && messageForm.controls.bd.errors" class="error">
+                          <div *ngIf="messageForm.controls.bd.errors.required">Your birthday is required</div>
+                        </div>
+                      </label>
+                    
+                      <input type="submit" value="sign in " class="cta">
+                    
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
