@@ -9,7 +9,7 @@
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Liste</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Ajouter une formation</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Ajouter un Condidat</a>
                 
               </div>
             </nav>
@@ -19,121 +19,58 @@
                       <div class="card">
                         <div class="card-header">
                          
-                          <h4 class="card-title"> Liste des formations</h4>
+                          <h4 class="card-title"> Liste des condidats</h4>
                         </div>
                         <div class="card-body">
                           <div class="table-responsive">
                             <table class="table">
                               <thead class=" text-primary">
                                 <th>
-                                  Name
+                                  FirstName
                                 </th>
                                 <th>
-                                  Nom
+                                  LastName
                                 </th>
                                 <th>
-                                  Type
+                                  Email
+                                </th>
+                                <th>
+                                  address
+                                </th>
+                                <th>
+                                  PhoneNumber
+                                </th>
+                                <th>
+                                  CV
                                 </th>
                                 <th class="text-right">
                                   
                                 </th>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>
-                                    ...
-                                  </td>
-                                  <td>
-                                    ...
-                                  </td>
-                                  <td>
-                                    ....
-                                  </td>
+                                <tr *ngFor="let users of user">
+                                  <td>{{user.username}}</td>
+                                  <td>{{user.pass}}</td>
+                                  <td>{{user.email}}</td>
+                                  <td>{{user.email}}</td>
+                                  <td>{{user.email}}</td>
+                                  <td>{{user.email}}</td>
+      
+      
                                   <td class="text-right">
-                                      <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                          <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                          <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
+                                    <button type="button" rel="tooltip" title=""
+                                      class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
+                                      data-original-title="Edit Task">
+                                      <i class="now-ui-icons ui-2_settings-90"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title=""
+                                      class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                                      data-original-title="Remove">
+                                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    </button>
                                   </td>
                                 </tr>
-                                <tr>
-                                  <td>
-                                   ...
-                                  </td>
-                                  <td>
-                                   ...
-                                  </td>
-                                  <td>
-                                    ...
-                                  </td>
-                                  <td class="text-right">
-                                      <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                          <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                          <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    ...
-                                  </td>
-                                  <td>
-                                    ...
-                                  </td>
-                                  <td>
-                                    ...
-                                  </td>
-                                  <td class="text-right">
-                                      <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                          <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                          <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    ....
-                                  </td>
-                                  <td>
-                                    ...
-                                  </td>
-                                  <td>
-                                    ....
-                                  </td>
-                                  <td class="text-right">
-                                      <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                          <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                          <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                      ....
-                                  </td>
-                                  <td>
-                                   ....
-                                  </td>
-                                  <td>
-                                    ...
-                                  </td>
-                                  <td class="text-right">
-                                      <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                          <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                          <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                  </td>
-                                </tr>
+      
                               </tbody>
                             </table>
                           </div>
@@ -223,7 +160,7 @@
                                 <div class="col-md-3">
                                   </div>  
                               <div class="col-md-3">
-                                  <button type="button" class="btn btn-info ">Info</button>
+                                  <button type="button" class="btn btn-info ">Add</button>
                               </div>
                             </div>
                           </form>

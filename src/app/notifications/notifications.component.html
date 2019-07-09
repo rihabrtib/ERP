@@ -1,133 +1,162 @@
-<div class="panel-header">
-  <div class="header text-center">
-    <h2 class="title">Notifications</h2>
-    <p class="category">Please checkout the
-      <a href="https://scttcper.github.io/ngx-toastr/" target="_blank">full documentation.</a>
-    </p>
-  </div>
+<div class="panel-header panel-header-sm">
+ 
 </div>
 <div class="main-content">
   <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Notifications Style</h4>
-        </div>
-        <div class="card-body">
-          <div class="alert alert-info">
-            <span>This is a plain notification</span>
-          </div>
-          <div class="alert alert-info">
-            <button type="button" aria-hidden="true" class="close">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <span>This is a notification with close button.</span>
-          </div>
-          <div class="alert alert-info alert-with-icon" data-notify="container">
-            <button type="button" aria-hidden="true" class="close">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <span data-notify="icon" class="now-ui-icons ui-1_bell-53"></span>
-            <span data-notify="message">This is a notification with close button and icon.</span>
-          </div>
-          <div class="alert alert-info alert-with-icon" data-notify="container">
-            <button type="button" aria-hidden="true" class="close">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <span data-notify="icon" class="now-ui-icons ui-1_bell-53"></span>
-            <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Notification states</h4>
-        </div>
-        <div class="card-body">
-          <div class="alert alert-primary">
-            <button type="button" aria-hidden="true" class="close">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <span>
-              <b> Primary - </b> This is a regular notification made with ".alert-primary"</span>
-          </div>
-          <div class="alert alert-info">
-            <button type="button" aria-hidden="true" class="close">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <span>
-              <b> Info - </b> This is a regular notification made with ".alert-info"</span>
-          </div>
-          <div class="alert alert-success">
-            <button type="button" aria-hidden="true" class="close">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <span>
-              <b> Success - </b> This is a regular notification made with ".alert-success"</span>
-          </div>
-          <div class="alert alert-warning">
-            <button type="button" aria-hidden="true" class="close">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <span>
-              <b> Warning - </b> This is a regular notification made with ".alert-warning"</span>
-          </div>
-          <div class="alert alert-danger">
-            <button type="button" aria-hidden="true" class="close">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <span>
-              <b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="col-md-12">
-      <div class="card">
-        <div class="card-body">
-          <div class="places-buttons">
-            <div class="row">
-              <div class="col-md-6 ml-auto mr-auto text-center">
-                <h4 class="card-title">
-                  Notifications Places
-                  <p class="category">Click to view notifications</p>
-                </h4>
-              </div>
+      <div class="card ">
+        <div class="card-header ">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Liste</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Ajouter un employé</a>
+              
             </div>
-            <div class="row">
-              <div class="col-lg-8 ml-auto mr-auto">
-                <div class="row">
-                  <div class="col-md-4">
-                    <button class="btn btn-primary btn-block" (click)="showNotification('top','left')">Top Left</button>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-header">
+                       
+                        <h4 class="card-title">Liste des employés </h4>
+                      </div>
+                      <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead class=" text-primary">
+                              <th>
+                                FirstName
+                              </th>
+                              <th>
+                                LastName
+                              </th>
+                              <th>
+                                Email
+                              </th>
+                              <th>
+                                address
+                              </th>
+                              <th>
+                                PhoneNumber
+                              </th>
+                              <th>
+                                Rôle
+                              </th>
+                              <th class="text-right">
+                                
+                              </th>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let users of user">
+                                <td>{{user.username}}</td>
+                                <td>{{user.pass}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.email}}</td>
+    
+    
+                                <td class="text-right">
+                                  <button type="button" rel="tooltip" title=""
+                                    class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
+                                    data-original-title="Edit Task">
+                                    <i class="now-ui-icons ui-2_settings-90"></i>
+                                  </button>
+                                  <button type="button" rel="tooltip" title=""
+                                    class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                                    data-original-title="Remove">
+                                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                                  </button>
+                                </td>
+                              </tr>
+    
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-4">
-                    <button class="btn btn-primary btn-block" (click)="showNotification('top','center')">Top Center</button>
-                  </div>
-                  <div class="col-md-4">
-                    <button class="btn btn-primary btn-block" (click)="showNotification('top','right')">Top Right</button>
-                  </div>
-                </div>
-              </div>
+
+
+              
             </div>
-            <div class="row">
-              <div class="col-lg-8 ml-auto mr-auto">
-                <div class="row">
-                  <div class="col-md-4">
-                    <button class="btn btn-primary btn-block" (click)="showNotification('bottom','left')">Bottom Left</button>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5 class="title">Ajouter un employé</h5>
+                      </div>
+                      <div class="card-body">
+                        <form>
+                          
+                          <div class="row">
+                            <div class="col-md-6 pr-1">
+                              <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" placeholder="Company" value="Mike">
+                              </div>
+                            </div>
+                            <div class="col-md-6 pl-1">
+                              <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            
+                            <div class="col-md-6 pl-1">
+                              <div class="form-group">
+                                <label for="email">Email </label>
+                                <input name="email" id="email" type="email" class="form-control" placeholder="Email">
+                              </div>
+                            </div>
+                          
+                          
+                            <div class="col-md-6 pl-1">
+                              <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            
+                            <div class="col-md-6 pl-1">
+                                <div class="form-group">
+                                    <label>PhoneNumber</label>
+                                    <input type="number" class="form-control" placeholder="ZIP Code">
+                                  </div>      
+                            </div>
+                            <div class="col-md-6 pl-1">
+                                <div class="form-group">
+                                    <label>Role</label>
+                                    <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                  </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-3">
+                                </div>
+  
+                                <div class="col-md-3">
+                                  </div>
+                                <div class="col-md-3">
+                                  </div>  
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-info ">Add</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-4">
-                    <button class="btn btn-primary btn-block" (click)="showNotification('bottom','center')">Bottom Center</button>
-                  </div>
-                  <div class="col-md-4">
-                    <button class="btn btn-primary btn-block" (click)="showNotification('bottom','right')">Bottom Right</button>
-                  </div>
-                </div>
-              </div>
             </div>
+            
           </div>
         </div>
+       
       </div>
     </div>
   </div>

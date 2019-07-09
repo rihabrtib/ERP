@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  users:User[];
+  users:any;
+  
   messageForm: FormGroup;
   submitted = false;
   success = false;
@@ -34,30 +35,6 @@ export class DashboardComponent implements OnInit {
     , 1000)
   }
 
-
-  inSubmit(){
-    this.userService.getuser(this.users).subscribe(
-      data => {
-        if (data) {
-          console.log("user exist")
-        }
-        else console.log('user not found')
-
-      },
-      err => {
-        console.log("error sending data")
-
-      },
-      () => {
-        console.log("data sent")
-
-      }
-
-    )
-  }
-
-  
-  
   onSubmit() {
     this.submitted = true;
 
@@ -85,10 +62,23 @@ export class DashboardComponent implements OnInit {
     
       )
     }
+    Delete(user:User){
+      this.service.deleteUser(user)
+      .subscribe(data =>{
+        this.users=this.users.filter(p=>p!==user);
+        alert("vous voulez supprimer ?");
+      })
+    }
 
-  
+
   ngOnInit() {
-    
+    this.userService.getuser().subscribe(data => {
+      this.users = data
+    })
+
          
   }
+
+
+  
 }
