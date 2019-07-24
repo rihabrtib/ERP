@@ -1,0 +1,196 @@
+<div class="panel-header panel-header-sm">
+
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true" (click)=inSubmit()>Liste</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                aria-controls="nav-profile" aria-selected="false">Ajouter Conge</a>
+
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+
+
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead class=" text-primary">
+                            <th scope="col">
+                               Depart
+                              </th>
+                            <th scope="col">
+                               Fin
+                              </th>
+                          <th scope="col">
+                            Nom
+                          </th>
+                         
+                         
+                        
+                          <th scope="col" class="text-right">
+
+                          </th>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let conge of conges">
+                            <td>{{conge.dateDepart}}</td>
+                            <td>{{conge.dateFin}}</td>
+                            <td>{{conge.personne.firstName}}</td>
+                           
+                            <td class="text-right">
+                              <button type="button" rel="tooltip" style="color:LightGreen;  " title=""
+                                class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
+                                data-original-title="Edit Task" (click)="Edit(conge)" data-toggle="modal"
+                                data-target="#exampleModal" data-whatever="@mdo">
+                                <i class="now-ui-icons ui-2_settings-90"></i>
+                              </button>
+                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form>
+                                        <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                          <input type="text" [(ngModel)]="conge.firstName" name="firstName"
+                                            class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                          <input type="text" [(ngModel)]="conge.lastName" name="lastName"
+                                            class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="message-text" class="col-form-label">Message:</label>
+                                          <textarea class="form-control" [(ngModel)]="conge.email" name="email"
+                                            id="message-text"></textarea>
+                                        </div>
+                                      </form>
+                                    </div>
+                                    <div class="modal-footer">
+
+                                      <button type="button" data-dismiss="modal" (click)="confirme(conge)"
+                                        class="btn btn-primary">Confirmer</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+
+
+
+
+                              <button type="button" rel="tooltip" title=""
+                                class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                                data-original-title="Remove" (click)="Delete(conge)">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="title">Ajouter un Conge</h5>
+                  </div>
+                  <div class="card-body">
+
+                    <form [formGroup]="messageForm" >
+                        <div class="row">
+                            <div class="col-md-6 px-1">
+                              <div class="form-group">
+                                <label>Date du départ</label>
+                                <input type="date" class="form-control" placeholder="" formControlName="dateDepart"
+                                  value="michael23">
+    
+                              </div>
+                            </div>
+                            <div class="col-md-6 px-1">
+                              <div class="form-group">
+                                <label>Date du fin</label>
+                                <input type="date" class="form-control" placeholder="" formControlName="dateFin"
+                                  value="michael23">
+    
+                              </div>
+                            </div>
+    
+    
+                          </div>
+                          <div class="row">
+                              <div class="col-md-3 px-1"></div>
+                            <div class="col-md-6 px-1">
+                                <div class="form-group" >
+                                    <label for="inputState">Nom</label>
+                                    <select   id="inputState"  formControlName="personne" class="form-control">
+                                      <option   selected >Choose...</option>
+                                      <option [value]="personne.id" *ngFor="let personne of personnels">{{personne.firstName}}</option>
+                                    </select>
+                                  </div>
+                            </div>
+                            <div class="col-md-3 px-1"></div>
+                            
+    
+    
+                          </div>
+
+
+
+                      
+                      <div class="row">
+                        <div class="col-md-3 px-1"></div>
+                        <div class="col-md-3 px-1"></div>
+                        <div class="col-md-3 px-1"></div>
+                        <div class="col-md-3 px-1">
+                          <button type="submit" (click)="onSubmit()"vclass="cta" class="btn btn-warning">Confirmer</button>
+                        </div>
+                      </div>
+
+
+
+
+                    </form>
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

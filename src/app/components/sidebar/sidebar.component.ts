@@ -13,10 +13,10 @@ export const ROUTES: RouteInfo[] = [
     { path: '/maps', title: 'Condidats',  icon:'users_single-02', class: '' },
     { path: '/notifications', title: 'Personnels',  icon:'business_badge', class: '' },
 
-    { path: '/user-profile', title: 'Conge',  icon:'ui-1_calendar-60', class: '' },
+    { path: '/conge', title: 'Conge',  icon:'ui-1_calendar-60', class: '' },
     { path: '/table-list', title: 'Finance',  icon:'business_money-coins', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'text_caps-small', class: '' },
-    { path: '/upgrade', title: 'Parteneriat',  icon:'objects_spaceship', class: 'active active-pro' }
+    { path: '/typography', title: 'Agence',  icon:'text_caps-small', class: '' },
+    { path: '/upgrade', title: 'Parteneur',  icon:'objects_spaceship', class: 'active active-pro' }
 
 ];
 

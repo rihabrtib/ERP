@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
+import { ServicePersonnelsService, Personnel } from './service-personnels.service';
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
@@ -8,62 +9,114 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor(private toastr: ToastrService) {}
-  showNotification(from, align){
+  personnels: Personnel[];
+ filesToUpload:Array<File>=[];
+ imagesize = false;
+ imageExt = false;
+ imageSrc:any;
+  submitted = false;
+  success = false;
 
-      const color = Math.floor((Math.random() * 5) + 1);
+  messageForm = new FormGroup({
 
-      switch(color){
-        case 1:
-        this.toastr.info('<span class="now-ui-icons ui-1_bell-53"></span> Welcome to <b>Now Ui Dashboard</b> - a beautiful freebie for every web developer.', '', {
-           timeOut: 8000,
-           closeButton: true,
-           enableHtml: true,
-           toastClass: "alert alert-info alert-with-icon",
-           positionClass: 'toast-' + from + '-' +  align
-         });
-        break;
-        case 2:
-        this.toastr.success('<span class="now-ui-icons ui-1_bell-53"></span> Welcome to <b>Now Ui Dashboard</b> - a beautiful freebie for every web developer.', '', {
-           timeOut: 8000,
-           closeButton: true,
-           enableHtml: true,
-           toastClass: "alert alert-success alert-with-icon",
-           positionClass: 'toast-' + from + '-' +  align
-         });
-        break;
-        case 3:
-        this.toastr.warning('<span class="now-ui-icons ui-1_bell-53"></span> Welcome to <b>Now Ui Dashboard</b> - a beautiful freebie for every web developer.', '', {
-           timeOut: 8000,
-           closeButton: true,
-           enableHtml: true,
-           toastClass: "alert alert-warning alert-with-icon",
-           positionClass: 'toast-' + from + '-' +  align
-         });
-        break;
-        case 4:
-        this.toastr.error('<span class="now-ui-icons ui-1_bell-53"></span> Welcome to <b>Now Ui Dashboard</b> - a beautiful freebie for every web developer.', '', {
-           timeOut: 8000,
-           enableHtml: true,
-           closeButton: true,
-           toastClass: "alert alert-danger alert-with-icon",
-           positionClass: 'toast-' + from + '-' +  align
-         });
-         break;
-         case 5:
-         this.toastr.show('<span class="now-ui-icons ui-1_bell-53"></span> Welcome to <b>Now Ui Dashboard</b> - a beautiful freebie for every web developer.', '', {
-            timeOut: 8000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-primary alert-with-icon",
-            positionClass: 'toast-' + from + '-' +  align
-          });
-        break;
-        default:
-        break;
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    role: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    numTel: new FormControl('', [Validators.required]),
+    dateRec: new FormControl('', [Validators.required]),
+    salaire: new FormControl('', [Validators.required]),
+    adresse: new FormControl('', [Validators.required]),
+
+
+  });
+
+   
+
+
+  messageFormm = new FormGroup({
+
+    photo: new FormControl('', [Validators.required]),
+  })
+  constructor(private formBuilder: FormBuilder,
+    private service: ServicePersonnelsService,
+  ) {
+
+
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    
+   const file = new FormData();
+   file.append('photo',this.filesToUpload[0])
+    this.success = true;
+    this.service.addPhoto(file).subscribe(
+      data => {
+        if (data) {
+            this.service.addPersonnel(data,this.messageForm.value).subscribe(
+              data => {
+                if (data) {
+                  console.log("form sent")
+                }
+              }
+            )
+          
+        }
+      },
+      err => {
+        console.log("error sending data")
+      },
+      () => {
+        console.log("data sent")
+
       }
+
+
+    )
   }
+  Delete(personnel: Personnel) {
+    this.service.deletePersonnel(personnel)
+      .subscribe(data => {
+        this.personnels = this.personnels.filter(p => p !== personnel);
+        alert("vous voulez supprimer ?");
+      })
+  }
+
+  inSubmit() {
+    this.ngOnInit();
+  }
+
   ngOnInit() {
+
+    this.service.getPersonnel().subscribe(data => {
+      this.personnels = data
+    })
+
+
   }
+  fileChangeEvent(fileInput: any) {
+
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      if ((fileInput.target.files[0].size / 1000000.0) > 5) {
+        this.imagesize = true;
+      } else if (!['png', 'jpg', 'jpeg'].includes((fileInput.target.files[0].name.substr(fileInput.target.files[0].name.lastIndexOf('.') + 1)))) {
+        this.imageExt = true;
+      } else {
+        this.imagesize = false;
+        this.imageExt = false;
+        this.filesToUpload = <Array<File>>fileInput.target.files;
+        const reader = new FileReader();
+        reader.readAsDataURL(fileInput.target.files[0]); // read file as data url
+        reader.onload = (event: any) => { // called once readAsDataURL is completed
+          this.imageSrc = event.target.result;
+        };
+      }
+
+
 
 }
+  }
+}
+  

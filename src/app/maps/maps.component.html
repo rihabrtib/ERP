@@ -1,179 +1,251 @@
 <div class="panel-header panel-header-sm">
- 
-  </div>
-  <div class="main-content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card ">
-          <div class="card-header ">
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Liste</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Ajouter un Condidat</a>
-                
+
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true" (click)=inSubmit()>Liste</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                aria-controls="nav-profile" aria-selected="false">Ajouter un Condidat</a>
+
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+
+
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead class=" text-primary">
+                          <th scope="col">
+                            Nom
+                          </th>
+                          <th scope="col">
+                            Prenom
+                          </th>
+                          <th scope="col">
+                            Email
+                          </th>
+                          <th scope="col">
+                            NumTel
+                          </th>
+                          <th scope="col">
+                            Addresse
+                          </th>
+                          <th scope="col">
+                            cv
+                          </th>
+                          <th scope="col">
+                            payée
+                          </th>
+                          <th scope="col">
+                            formation
+                          </th>
+                          <th scope="col" class="text-right">
+
+                          </th>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let condidat of condidats">
+
+                            <td>{{condidat.firstName}}</td>
+                            <td>{{condidat.lastName}}</td>
+                            <td>{{condidat.email}}</td>
+                            <td>{{condidat.numTel}}</td>
+                            <td>{{condidat.adresse}}</td>
+                            <td>{{condidat.cv}}</td>
+                            <td>{{condidat.payer}}</td>
+                            <td>{{condidat.formation.name}}</td>
+                            <td class="text-right">
+                              <button type="button" rel="tooltip" style="color:LightGreen;  " title=""
+                                class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
+                                data-original-title="Edit Task" (click)="Edit(condidat)" data-toggle="modal"
+                                data-target="#exampleModal" data-whatever="@mdo">
+                                <i class="now-ui-icons ui-2_settings-90"></i>
+                              </button>
+                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form>
+                                        <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                          <input type="text" [(ngModel)]="condidat.firstName" name="firstName"
+                                            class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                          <input type="text" [(ngModel)]="condidat.lastName" name="lastName"
+                                            class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="message-text" class="col-form-label">Message:</label>
+                                          <textarea class="form-control" [(ngModel)]="condidat.email" name="email"
+                                            id="message-text"></textarea>
+                                        </div>
+                                      </form>
+                                    </div>
+                                    <div class="modal-footer">
+
+                                      <button type="button" data-dismiss="modal" (click)="confirme(condidat)"
+                                        class="btn btn-primary">Send message</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+
+
+
+
+                              <button type="button" rel="tooltip" title=""
+                                class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                                data-original-title="Remove" (click)="Delete(condidat)">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                  <div class="col-md-12">
-                      <div class="card">
-                        <div class="card-header">
-                         
-                          <h4 class="card-title"> Liste des condidats</h4>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="title">Ajouter un Condidat</h5>
+                  </div>
+                  <div class="card-body">
+
+                    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+
+                      <div class="row">
+                        <div class="col-md-6 px-1">
+                          <div class="form-group">
+
+                            <input type="text" class="form-control" placeholder="FirstName" formControlName="firstName"
+                              value="michael23">
+
+                          </div>
                         </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <table class="table">
-                              <thead class=" text-primary">
-                                <th>
-                                  FirstName
-                                </th>
-                                <th>
-                                  LastName
-                                </th>
-                                <th>
-                                  Email
-                                </th>
-                                <th>
-                                  address
-                                </th>
-                                <th>
-                                  PhoneNumber
-                                </th>
-                                <th>
-                                  CV
-                                </th>
-                                <th class="text-right">
-                                  
-                                </th>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let users of user">
-                                  <td>{{user.username}}</td>
-                                  <td>{{user.pass}}</td>
-                                  <td>{{user.email}}</td>
-                                  <td>{{user.email}}</td>
-                                  <td>{{user.email}}</td>
-                                  <td>{{user.email}}</td>
-      
-      
-                                  <td class="text-right">
-                                    <button type="button" rel="tooltip" title=""
-                                      class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
-                                      data-original-title="Edit Task">
-                                      <i class="now-ui-icons ui-2_settings-90"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title=""
-                                      class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
-                                      data-original-title="Remove">
-                                      <i class="now-ui-icons ui-1_simple-remove"></i>
-                                    </button>
-                                  </td>
-                                </tr>
-      
-                              </tbody>
-                            </table>
+                        <div class="col-md-6 px-1">
+                          <div class="form-group">
+
+                            <input type="text" class="form-control" placeholder="LastName" formControlName="lastName"
+                              value="michael23">
+
+                          </div>
+                        </div>
+
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 px-1">
+                          <div class="form-group">
+
+                            <input type="email" class="form-control" placeholder="Email" formControlName="email"
+                              value="michael23">
+                          </div>
+                        </div>
+                        <div class="col-md-6 px-1">
+                          <div class="form-group">
+
+                            <input type="text" class="form-control" placeholder="Addresse" formControlName="adresse"
+                              value="michael23">
+
+
+                          </div>
+                        </div>
+                   
+
+
+                      </div>
+
+
+
+                      <div class="row">
+                        <div class="col-md-6 px-1">
+                          <div class="form-group">
+
+                            <input type="number" class="form-control" placeholder="NumTel" formControlName="numTel"
+                              value="michael23">
+                          </div>
+                        </div>
+                        <div class="col-md-6 px-1">
+                          <div class="form-group">
+
+                            <input type="text" class="form-control" placeholder="payee" formControlName="payer"
+                              value="michael23">
+
+
                           </div>
                         </div>
                       </div>
-                    </div>
-  
-  
-                
-              </div>
-              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                  <div class="col-md-12">
-                      <div class="card">
-                        <div class="card-header">
-                          <h5 class="title">Ajouter une formation</h5>
+                        <div class="row">
+                       <input type="text" class="form-control"   formControlName="cv">
+                              
                         </div>
-                        <div class="card-body">
-                          <form>
-                            <div class="row">
-                              <div class="col-md-5 pr-1">
-                                <div class="form-group">
-                                  <label>Company (disabled)</label>
-                                  <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                                </div>
-                              </div>
-                              <div class="col-md-3 px-1">
-                                <div class="form-group">
-                                  <label>Username</label>
-                                  <input type="text" class="form-control" placeholder="Username" value="michael23">
-                                </div>
-                              </div>
-                              <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                  <label for="email">Email address</label>
-                                  <input name="email" id="email" type="email" class="form-control" placeholder="Email">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 pr-1">
-                                <div class="form-group">
-                                  <label>First Name</label>
-                                  <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                </div>
-                              </div>
-                              <div class="col-md-6 pl-1">
-                                <div class="form-group">
-                                  <label>Last Name</label>
-                                  <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <label>Address</label>
-                                  <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                  <label>City</label>
-                                  <input type="text" class="form-control" placeholder="City" value="Mike">
-                                </div>
-                              </div>
-                              <div class="col-md-4 px-1">
-                                <div class="form-group">
-                                  <label>Country</label>
-                                  <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                </div>
-                              </div>
-                              <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                  <label>Postal Code</label>
-                                  <input type="number" class="form-control" placeholder="ZIP Code">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                </div>
-  
-                                <div class="col-md-3">
-                                  </div>
-                                <div class="col-md-3">
-                                  </div>  
-                              <div class="col-md-3">
-                                  <button type="button" class="btn btn-info ">Add</button>
-                              </div>
-                            </div>
-                          </form>
+                        <div class="row">
+                        <div class="col-md-4 px-1">
+                          <div class="form-group" >
+                            <label for="inputState">Formation</label>
+                            <select   id="inputState"  formControlName="formation" class="form-control">
+                              <option   selected >Choose...</option>
+                              <option [value]="formation.id" *ngFor="let formation of formations">{{formation.name}}</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                        <div class="row">
+                          <div class="col-md-3 px-1"></div>
+                          <div class="col-md-3 px-1"></div>
+                          <div class="col-md-3 px-1"></div>
+                          <div class="col-md-3 px-1">
+                            <button type="submit" vclass="cta" class="btn btn-warning">Confirmer</button>
+                          </div>
+                        </div>
+
+
+
+
+                    </form>
+
+
+
+                  </div>
+                </div>
               </div>
-              
             </div>
+
           </div>
-         
         </div>
+
       </div>
     </div>
   </div>
-  
+</div>

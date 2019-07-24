@@ -9,18 +9,19 @@ const headers={
 export class User{
   constructor(
      public id:number,
-    public username:string,
-    public pass:string,
-    public email:string,
+    public name:string,
+    public apellidos:string,
+  //  public email:string,
  //   public id:string, 
   //  public text:string,
   //  public user_id:string,
   ) {}
 }
 
-var Url:string='http://localhost:8000/user/get';
-var Url2 :string='http://localhost:8008/user/add';
-var Url3 :string='http://localhost:8008/user/delete';
+//var Url:string='http://localhost:8000/user/get';
+//var Url2 :string='http://localhost:8008/user/add';
+//var Url3 :string='http://localhost:8008/user/delete';
+//var Urll :string='http://localhost:8008/user/update';
 
 @Injectable({
   providedIn: 'root'
@@ -28,24 +29,60 @@ var Url3 :string='http://localhost:8008/user/delete';
 export class ServiceService {
 
   constructor(private http: HttpClient) { }
+  Url='http://localhost:9000/personas';
   getuser(){
-    return this.http.get('http://localhost:8008/user/all')
+    return this.http.get<User[]>(this.Url);
   }
-
-  adduser(user)
-  {
-    return this.http.post(Url2,user)
+  adduser(user:User){
+    return this.http.post<User>(this.Url,user);
+    
   }
-
-
+  getUserId(id:number){
+    return this.http.get<User>(this.Url+"/"+id);
+  }
+  updateUser(user:User){
+    return this.http.put<User>(this.Url+"/"+user.id,user);
+  }
   deleteUser(user:User){
-    return this.http.delete<User>(Url3+"/"+user.id);
+    return this.http.delete<User>(this.Url+"/"+user.id);
   }
 
 
-  Login(user)
-  {
-    return this.http.post(Url,user)
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // getuser(){
+ //   return this.http.get('http://localhost:8008/user/all')
+ // }
+
+ // adduser(user)
+ // {
+ //   return this.http.post(Url2,user)
+ // }
+
+
+ // deleteUser(user:User){
+ //   return this.http.delete<User>(Url3+"/"+user.id);
+ // }
+ // updateUser(user:User){
+ //   return this.http.post<User>(Urll+"/"+user.id,user);
+ // }
+ // getPersonaId(id:number){
+ //   return this.http.get<User>(Url+"/"+id);
+ // }
+ // Login(user)
+ // {
+ //   return this.http.post(Url,user)
+ // }
   
 }

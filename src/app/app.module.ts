@@ -12,6 +12,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -24,12 +25,14 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     NgbModule,
     ReactiveFormsModule,
     BrowserModule,
+   
     ToastrModule.forRoot()
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent
-  
+    AdminLayoutComponent,
+    LoginComponent,
+    
 
   ],
   providers: [],
