@@ -11,7 +11,7 @@
               <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                 aria-controls="nav-home" aria-selected="true" (click)=inSubmit()>Liste</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Ajouter un Employee</a>
+                aria-controls="nav-profile" aria-selected="false">Ajouter un employé</a>
 
             </div>
           </nav>
@@ -31,7 +31,7 @@
                             Nom
                           </th>
                           <th scope="col">
-                            Prenom
+                            Prénom
                           </th>
                           <th scope="col">
                             Email
@@ -40,18 +40,18 @@
                             NumTel
                           </th>
                           <th scope="col">
-                            Addresse
+                            Adresse
                           </th>
                           <th scope="col">
-                             Recrutement
+                            Recrutement
                           </th>
                           <th scope="col">
-                            Role
+                            Rôle
                           </th>
                           <th scope="col">
                             Salaire
                           </th>
-                          
+
                           <th scope="col">
                             Photo
                           </th>
@@ -70,13 +70,13 @@
                             <td>{{personnel.dateRec}}</td>
                             <td>{{personnel.role}}</td>
                             <td>{{personnel.salaire}}</td>
-                           
-                            
+
+
                             <td><img src="http://localhost:9008/employe/downloadFile/{{personnel.id}}"></td>
-                            <td class="text-right">
+                            <td>
                               <button type="button" rel="tooltip" style="color:LightGreen;  " title=""
                                 class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
-                                data-original-title="Edit Task" (click)="Edit(personnel)" data-toggle="modal"
+                                data-original-title="Edit Task" (click)="Edit(personnel.id)" data-toggle="modal"
                                 data-target="#exampleModal" data-whatever="@mdo">
                                 <i class="now-ui-icons ui-2_settings-90"></i>
                               </button>
@@ -85,34 +85,84 @@
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                      <h5 class="modal-title" id="exampleModalLabel">Modification</h5>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                     </div>
                                     <div class="modal-body">
-                                      <form>
-                                        <div class="form-group">
-                                          <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                          <input type="text" [(ngModel)]="personnel.firstName" name="firstName"
-                                            class="form-control" id="recipient-name">
+                                      <form [formGroup]="messageFormmodif">
+                                        <div class="row">
+                                          <div class="col-md-6 px-1">
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">Nom</label>
+                                              <input type="text" value="{{genre?.firstName}}"
+                                                formControlName="firstName" class="form-control" id="recipient-name">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6 px-1">
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">Prénom</label>
+                                              <input type="text" value="{{genre?.lastName}}" formControlName="lastName"
+                                                class="form-control" id="recipient-name">
+                                            </div>
+                                          </div>
                                         </div>
-                                        <div class="form-group">
-                                          <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                          <input type="text" [(ngModel)]="personnel.lastName" name="lastName"
-                                            class="form-control" id="recipient-name">
+                                        <div class="row">
+                                          <div class="col-md-6 px-1">
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">Email</label>
+                                              <input type="text" value="{{genre?.email}}" formControlName="email"
+                                                class="form-control" id="recipient-name">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6 px-1">
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">NumTel</label>
+                                              <input type="text" value="{{genre?.numTel}}" formControlName="numTel"
+                                                class="form-control" id="recipient-name">
+                                            </div>
+                                          </div>
                                         </div>
-                                        <div class="form-group">
-                                          <label for="message-text" class="col-form-label">Message:</label>
-                                          <textarea class="form-control" [(ngModel)]="personnel.email" name="email"
-                                            id="message-text"></textarea>
+                                        <div class="row">
+                                          <div class="col-md-6 px-1">
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">Recrutement</label>
+                                              <input type="date" value="{{genre?.dateRec}}" formControlName="dateRec"
+                                                class="form-control" id="recipient-name">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6 px-1">
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">Adresse</label>
+                                              <input type="text" value="{{genre?.adresse}}" formControlName="adresse"
+                                                class="form-control" id="recipient-name">
+                                            </div>
+                                          </div>
                                         </div>
+                                        <div class="row">
+                                          <div class="col-md-6 px-1">
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">Salaire</label>
+                                              <input type="text" value="{{genre?.salaire}}" formControlName="salaire"
+                                                class="form-control" id="recipient-name">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6 px-1">
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">Rôle</label>
+                                              <input type="text" value="{{genre?.role}}" formControlName="role"
+                                                class="form-control" id="recipient-name">
+                                            </div>
+                                          </div>
+                                        </div>
+
                                       </form>
                                     </div>
                                     <div class="modal-footer">
 
-                                      <button type="button" data-dismiss="modal" (click)="confirme(personnel)"
-                                        class="btn btn-primary">Send message</button>
+                                      <button type="button" data-dismiss="modal" (click)="confirme(personnel.id)"
+                                        class="btn btn-primary">Confirmer</button>
                                     </div>
                                   </div>
                                 </div>
@@ -145,17 +195,17 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h5 class="title">Ajouter un employee</h5>
+                    <h5 class="title">Ajouter un employé</h5>
                   </div>
                   <div class="card-body">
 
-                    <form [formGroup]="messageForm" >
+                    <form [formGroup]="messageForm">
 
                       <div class="row">
                         <div class="col-md-6 px-1">
                           <div class="form-group">
 
-                            <input type="text" class="form-control" placeholder="FirstName" formControlName="firstName"
+                            <input type="text" class="form-control" placeholder="Nom" formControlName="firstName"
                               value="michael23">
 
                           </div>
@@ -163,7 +213,7 @@
                         <div class="col-md-6 px-1">
                           <div class="form-group">
 
-                            <input type="text" class="form-control" placeholder="LastName" formControlName="lastName"
+                            <input type="text" class="form-control" placeholder="Prénom" formControlName="lastName"
                               value="michael23">
 
                           </div>
@@ -181,7 +231,7 @@
                         <div class="col-md-6 px-1">
                           <div class="form-group">
 
-                            <input type="text" class="form-control" placeholder="Addresse" formControlName="adresse"
+                            <input type="text" class="form-control" placeholder="Adresse" formControlName="adresse"
                               value="michael23">
 
 
@@ -204,8 +254,11 @@
                         <div class="col-md-6 px-1">
                           <div class="form-group">
 
-                            <input type="text" class="form-control" placeholder="role" formControlName="role"
-                              value="michael23">
+                            <select id="inputState" placeholder=" Rôle" formControlName="role" class="form-control">
+                              <option selected>Choose...</option>
+                              <option>Coach</option>
+                              <option>Développeur</option>
+                            </select>
 
 
                           </div>
@@ -228,20 +281,21 @@
                         </div>
                       </div>
                     </form>
-                      <div class="row">
-                        
-                        <div class="col-md-6 px-1">
-                            <input (change)="fileChangeEvent($event)"  accept=".png, .jpg, jpeg"type="file" class="form-control" >
-                        </div>
+                    <div class="row">
+
+                      <div class="col-md-6 px-1">
+                        <input (change)="fileChangeEvent($event)" accept=".png, .jpg, jpeg" type="file"
+                          class="form-control">
                       </div>
-                      <div class="row">
-                        <div class="col-md-3 px-1"></div>
-                        <div class="col-md-3 px-1"></div>
-                        <div class="col-md-3 px-1"></div>
-                        <div class="col-md-3 px-1">
-                          <button (click)="onSubmit()" vclass="cta" class="btn btn-warning">Confirmer</button>
-                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3 px-1"></div>
+                      <div class="col-md-3 px-1"></div>
+                      <div class="col-md-3 px-1"></div>
+                      <div class="col-md-3 px-1">
+                        <button (click)="onSubmit()" vclass="cta" class="btn btn-warning">Confirmer</button>
                       </div>
+                    </div>
 
 
 

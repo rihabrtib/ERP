@@ -1,206 +1,214 @@
 <div class="panel-header panel-header-sm">
 
-  </div>
-  <div class="main-content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card ">
-          <div class="card-header ">
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"  role="tab"
-                  aria-controls="nav-home" aria-selected="true" (click)= inSubmit()>Liste</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"  role="tab"
-                  aria-controls="nav-profile" aria-selected="false">Ajouter un Niveau</a>
-                
-              </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div class="col-md-12">
-                  <div class="card">
-                    <div class="card-header">
-  
-                      
-                    </div>
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table table-striped" >
-                          <thead class=" text-primary">
-                            <th scope="col">
-                              Nom
-                            </th>
-                            <th scope="col">
-                             NumNiveau
-                            </th>
-                            <th scope="col">
-                             Description
-                            </th>
-                            <th scope="col">
-                              Nom de la Formation
-                             </th>
-                            <th scope="col" class="text-right">
-  
-                            </th>
-                          </thead>
-                          <tbody>
-                            <tr  *ngFor="let niveau of niveaux">
-                           
-                              <td>{{niveau.name}}</td>
-                              <td>{{niveau.numNiveau}}</td>
-                              <td>{{niveau.description}}</td>
-                              <td>{{niveau.formation.name}}</td>
-                              <td class="text-right">
-                                <button type="button" rel="tooltip" style="color:LightGreen;  " title=""
-                                  class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
-                                  data-original-title="Edit Task" (click)="Edit(niveau.id)" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                                  <i class="now-ui-icons ui-2_settings-90"></i>
-                                </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <form [formGroup]="messageFormmodif">
-                                          <div class="form-group">
-                                            <label for="recipient-name" class="col-form-label">Name</label>
-                                            <input type="text"  value="{{genre?.name}}" formControlName="name"class="form-control" id="recipient-name">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="recipient-name" class="col-form-label">numNiveau</label>
-                                            <input type="text"  value="{{genre?.numNiveau}}" formControlName="numNiveau" class="form-control" id="recipient-name">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="recipient-name" class="col-form-label">Description</label>
-                                            <input type="text"  value="{{genre?.description}}" formControlName="description" class="form-control" id="recipient-name">
-                                          </div>
-                                          <select   id="inputState" value="{{genre?.formation.name}}" formControlName="formation" class="form-control">
-                                            <option   selected >Choose...</option>
-                                            <option  *ngFor="let formation of formations">{{formation.name}}</option>
-                                          </select>
-                                          
-                                        </form>
-                                      </div>
-                                      <div class="modal-footer">
-                                        
-                                        <button type="button" data-dismiss="modal" (click)="Actualise(niveau.id)" class="btn btn-primary">Send message</button>
-                                      </div>
-                                    </div>
-                                  </div>
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true" (click)=inSubmit()>Liste</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                aria-controls="nav-profile" aria-selected="false">Ajouter un Niveau</a>
+
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+
+
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead class=" text-primary">
+                          <th scope="col">
+                            Nom
+                          </th>
+                          <th scope="col">
+                            NumNiveau
+                          </th>
+                          <th scope="col">
+                            Description
+                          </th>
+                          <th scope="col">
+                            Nom de la Formation
+                          </th>
+                          <th scope="col" class="text-right">
+
+                          </th>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let niveau of niveaux">
+
+                            <td>{{niveau.name}}</td>
+                            <td>{{niveau.numNiveau}}</td>
+                            <td>{{niveau.description}}</td>
+                            <td>{{niveau.formation.name}}</td>
+                            <td class="text-right">
+                              <button type="button" rel="tooltip" style="color:LightGreen;  " title=""
+                                class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
+                                data-original-title="Edit Task" (click)="Edit(niveau.id)" data-toggle="modal"
+                                data-target="#exampleModal" data-whatever="@mdo">
+                                <i class="now-ui-icons ui-2_settings-90"></i>
+                              </button>
+
+                              <button type="button" rel="tooltip" title=""
+                                class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                                data-original-title="Remove" (click)="Delete(niveau)">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                            </td>
+                          </tr>
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Modification</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
                                 </div>
-  
-  
-  
-  
-  
-  
-                                <button type="button" rel="tooltip" title=""
-                                  class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
-                                  data-original-title="Remove"  (click)="Delete(niveau)">
-                                  <i class="now-ui-icons ui-1_simple-remove"></i>
-                                </button>
-                              </td>
-                            </tr>
-  
-                          </tbody>
-                        </table>
-                      </div>
+                                <div class="modal-body">
+                                  <form [formGroup]="messageFormmodif">
+                                    <div class="form-group">
+                                      <label for="recipient-name" class="col-form-label">Nom</label>
+                                      <input type="text" value="{{genre?.name}}" formControlName="name"
+                                        class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="recipient-name" class="col-form-label">numNiveau</label>
+                                      <input type="text" value="{{genre?.numNiveau}}" formControlName="numNiveau"
+                                        class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="recipient-name" class="col-form-label">Description</label>
+                                      <input type="text" value="{{genre?.description}}" formControlName="description"
+                                        class="form-control" id="recipient-name">
+                                    </div>
+                                    <label>Nom de la formation</label>
+                                    <select id="inputState" value="{{genre?.formation.name}}"
+                                      formControlName="formation" class="form-control">
+                                      <option selected>Choose...</option>
+                                      <option [value]="formation.id" *ngFor="let formation of formations">
+                                        {{formation.name}}</option>
+                                    </select>
+
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+
+                                  <button type="button" data-dismiss="modal" (click)="Actualise(niveau.id)"
+                                    class="btn btn-primary">Confirmer</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
-  
-  
-  
               </div>
-              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <div class="col-md-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <h5 class="title">Ajouter un Niveau</h5>
-                    </div>
-                    <div class="card-body">
-  
-                      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-                         
-                        <div class="row">
-                            <div class="col-md-2 px-1"></div>
-                          <div class="col-md-8 px-1">
-                            <div class="form-group">
-                              <label>Name</label>
-                              <input type="text" class="form-control" placeholder="Name"formControlName="name" value="michael23">
-                              
-                              
-                            </div>
-                          </div>
-                          <div class="col-md-2 px-1"></div>
-                          
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2 px-1"></div>
-                          <div class="col-md-8 px-1">
-                            <div class="form-group">
-                              <label>NumNiveau</label>
-                              <input type="number" class="form-control" placeholder="NumNiveau" formControlName="numNiveau"value="michael23">
-                             
-                            </div>
-                          </div>
-                          <div class="col-md-2 px-1"></div>
-                          
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2 px-1"></div>
-                          <div class="col-md-8 px-1">
-                            <div class="form-group">
-                              <label>Description</label>
-                              <input type="text" class="form-control" placeholder="Description" formControlName="description"value="michael23">
-                              
-                              
-                            </div>
-                          </div>
-                          <div class="col-md-2 px-1"></div>
-                        </div>
-                          <div class="row">
-                              <div class="col-md-2 px-1"></div>
 
-                            <div class="col-md-4 px-1">
-                              
-                               
-                                <select   id="inputState"  formControlName="formation" class="form-control">
-                                  <option   selected >Choose...</option>
-                                  <option [value]="formation.id" *ngFor="let formation of formations">{{formation.name}}</option>
-                                </select>
-                              </div>
-                            
-                            <div class="col-md-2 px-1"></div>
+
+
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="title">Ajouter un Niveau</h5>
+                  </div>
+                  <div class="card-body">
+
+                    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+
+                      <div class="row">
+                        <div class="col-md-2 px-1"></div>
+                        <div class="col-md-8 px-1">
+                          <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" placeholder="Name" formControlName="name"
+                              value="michael23">
+
+
                           </div>
-                        
-                        <div class="row">
+                        </div>
+                        <div class="col-md-2 px-1"></div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-2 px-1"></div>
+                        <div class="col-md-8 px-1">
+                          <div class="form-group">
+                            <label>NumNiveau</label>
+                            <input type="number" class="form-control" placeholder="NumNiveau"
+                              formControlName="numNiveau" value="michael23">
+
+                          </div>
+                        </div>
+                        <div class="col-md-2 px-1"></div>
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-2 px-1"></div>
+                        <div class="col-md-8 px-1">
+                          <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" class="form-control" placeholder="Description"
+                              formControlName="description" value="michael23">
+
+
+                          </div>
+                        </div>
+                        <div class="col-md-2 px-1"></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-2 px-1"></div>
+
+                        <div class="col-md-4 px-1">
+
+                          <label>Formation</label>
+                          <select id="inputState" formControlName="formation" class="form-control">
+                            <option selected>Choose...</option>
+                            <option [value]="formation.id" *ngFor="let formation of formations">{{formation.name}}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-2 px-1"></div>
+                      </div>
+
+                      <div class="row">
                         <div class="col-md-3 px-1"></div>
                         <div class="col-md-3 px-1"></div>
                         <div class="col-md-3 px-1"></div>
                         <div class="col-md-3 px-1">
-                        <button type="submit" vclass="cta" class="btn btn-warning">Confirmer</button>
+                          <button type="submit" vclass="cta" class="btn btn-warning">Confirmer</button>
+                        </div>
                       </div>
-                    </div>
-                        
-                      </form>
-  
-                     
-  
-                    </div>
+
+                    </form>
+
+
+
                   </div>
                 </div>
               </div>
-  
             </div>
+
           </div>
-  
         </div>
+
       </div>
     </div>
   </div>
+</div>

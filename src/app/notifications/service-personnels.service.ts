@@ -28,6 +28,7 @@ export class ServicePersonnelsService {
   Url1='http://localhost:9008/employe/add';
   Url2='http://localhost:9008/employe/delOneById';
   Url3='http://localhost:9008/employe/file';
+  Url4='http://localhost:9008/employe';
   getPersonnel(){
     return this.http.get<Personnel[]>(this.Url);
   }
@@ -41,12 +42,13 @@ export class ServicePersonnelsService {
   }
 
   
-  // getFormationId(id:number){
-  //  return this.http.get<Formation>(this.Url+"/"+id);
-  // }
-  //  updateFormation(user:Formation){
-  //    return this.http.put<Formation>(this.Url+"/"+user.id,user);
-  //  }
+  getPersonnelId(id:number){
+    return this.http.get<Personnel>(this.Url4+"/"+id);
+  }
+  updatePersonnel(id,formation:Personnel){
+    
+   return this.http.put<Personnel>(this.Url4+"/"+id,formation);
+ }
   deletePersonnel(personnel:Personnel){
     return this.http.delete<Personnel>(this.Url2+"/"+personnel.id);
   }

@@ -8,12 +8,13 @@ import { ServicePersonnelsService, Personnel } from './service-personnels.servic
   styleUrls: ['./notifications.component.css']
 })
 export class NotificationsComponent implements OnInit {
-
+  genre;
+  personnel: any;
   personnels: Personnel[];
- filesToUpload:Array<File>=[];
- imagesize = false;
- imageExt = false;
- imageSrc:any;
+  filesToUpload: Array<File> = [];
+  imagesize = false;
+  imageExt = false;
+  imageSrc: any;
   submitted = false;
   success = false;
 
@@ -31,13 +32,32 @@ export class NotificationsComponent implements OnInit {
 
   });
 
-   
+  messageFormmodif = new FormGroup({
+
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    role: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    numTel: new FormControl('', [Validators.required]),
+    dateRec: new FormControl('', [Validators.required]),
+    salaire: new FormControl('', [Validators.required]),
+    adresse: new FormControl('', [Validators.required]),
 
 
-  messageFormm = new FormGroup({
+  });
 
-    photo: new FormControl('', [Validators.required]),
-  })
+
+
+
+
+
+
+
+
+  //messageFormm = new FormGroup({
+
+  //  photo: new FormControl('', [Validators.required]),
+  //})
   constructor(private formBuilder: FormBuilder,
     private service: ServicePersonnelsService,
   ) {
@@ -48,28 +68,29 @@ export class NotificationsComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    
-   const file = new FormData();
-   file.append('photo',this.filesToUpload[0])
+
+    const file = new FormData();
+    file.append('photo', this.filesToUpload[0])
     this.success = true;
     this.service.addPhoto(file).subscribe(
       data => {
         if (data) {
-            this.service.addPersonnel(data,this.messageForm.value).subscribe(
-              data => {
-                if (data) {
-                  console.log("form sent")
-                }
+          this.service.addPersonnel(data, this.messageForm.value).subscribe(
+            data => {
+              if (data) {
+                console.log("form sent")
               }
-            )
-          
+            }
+          )
+
         }
       },
       err => {
         console.log("error sending data")
       },
       () => {
-        console.log("data sent")
+        console.log("data sent");
+        alert("Confirmez?");
 
       }
 
@@ -83,6 +104,45 @@ export class NotificationsComponent implements OnInit {
         alert("vous voulez supprimer ?");
       })
   }
+
+  Edit(id) {
+    this.service.getPersonnelId(id).subscribe((res: any) => {
+      console.log("edit fn", id)
+      this.genre = res;
+      this.messageFormmodif = new FormGroup({
+        firstName: new FormControl(this.genre.firstName, [Validators.required]),
+        lastName: new FormControl(this.genre.lastName, [Validators.required]),
+        role: new FormControl(this.genre.role, [Validators.required]),
+        email: new FormControl(this.genre.email, [Validators.required]),
+        numTel: new FormControl(this.genre.numTel, [Validators.required]),
+        dateRec: new FormControl(this.genre.dateRec, [Validators.required]),
+        salaire: new FormControl(this.genre.salaire, [Validators.required]),
+        adresse: new FormControl(this.genre.adresse, [Validators.required]),
+      })
+      this.personnel = res;
+    })
+  }
+
+  confirme(id) {
+    this.service.updatePersonnel(id, this.messageFormmodif.value).subscribe((res: any) => {
+
+      console.log(this.messageForm.value)
+      alert("modifer");
+      this.ngOnInit();
+
+
+    })
+
+
+
+  }
+
+
+
+
+
+
+
 
   inSubmit() {
     this.ngOnInit();
@@ -116,7 +176,6 @@ export class NotificationsComponent implements OnInit {
 
 
 
-}
+    }
   }
 }
-  

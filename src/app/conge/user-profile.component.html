@@ -9,9 +9,9 @@
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                aria-controls="nav-home" aria-selected="true" (click)=inSubmit()>Liste</a>
+                aria-controls="nav-home" aria-selected="true" (click)=inSubmit()>Liste des Congés</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Ajouter Conge</a>
+                aria-controls="nav-profile" aria-selected="false">Ajouter Congé</a>
 
             </div>
           </nav>
@@ -27,18 +27,18 @@
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead class=" text-primary">
-                            <th scope="col">
-                               Depart
-                              </th>
-                            <th scope="col">
-                               Fin
-                              </th>
                           <th scope="col">
-                            Nom
+                            Début du congé
                           </th>
-                         
-                         
-                        
+                          <th scope="col">
+                            Fin du congé
+                          </th>
+                          <th scope="col">
+                            Nom de l'employé
+                          </th>
+
+
+
                           <th scope="col" class="text-right">
 
                           </th>
@@ -48,11 +48,11 @@
                             <td>{{conge.dateDepart}}</td>
                             <td>{{conge.dateFin}}</td>
                             <td>{{conge.personne.firstName}}</td>
-                           
-                            <td class="text-right">
+
+                            <td>
                               <button type="button" rel="tooltip" style="color:LightGreen;  " title=""
                                 class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
-                                data-original-title="Edit Task" (click)="Edit(conge)" data-toggle="modal"
+                                data-original-title="Edit Task" (click)="Edit(conge.id)" data-toggle="modal"
                                 data-target="#exampleModal" data-whatever="@mdo">
                                 <i class="now-ui-icons ui-2_settings-90"></i>
                               </button>
@@ -61,33 +61,37 @@
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                      <h5 class="modal-title" id="exampleModalLabel">Modification</h5>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                     </div>
                                     <div class="modal-body">
-                                      <form>
+                                      <form [formGroup]="messageFormmodif">
                                         <div class="form-group">
-                                          <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                          <input type="text" [(ngModel)]="conge.firstName" name="firstName"
+                                          <label for="recipient-name" class="col-form-label"> Début du congé</label>
+                                          <input type="text" value="{{genre?.dateDepart}}" formControlName="dateDepart"
                                             class="form-control" id="recipient-name">
                                         </div>
                                         <div class="form-group">
-                                          <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                          <input type="text" [(ngModel)]="conge.lastName" name="lastName"
+                                          <label for="recipient-name" class="col-form-label"> Fin du congé</label>
+                                          <input type="text" value="{{genre?.dateFin}}" formControlName="dateFin"
                                             class="form-control" id="recipient-name">
                                         </div>
-                                        <div class="form-group">
-                                          <label for="message-text" class="col-form-label">Message:</label>
-                                          <textarea class="form-control" [(ngModel)]="conge.email" name="email"
-                                            id="message-text"></textarea>
-                                        </div>
+
+                                        <label> Nom de l'employé</label>
+                                        <select id="inputState" value="{{genre?.personne.firstName}}"
+                                          formControlName="personne" class="form-control">
+                                          <option selected>Choose...</option>
+                                          <option [value]="personne.id" *ngFor="let personne of personnels">
+                                            {{personne.firstName}}</option>
+                                        </select>
+
                                       </form>
                                     </div>
                                     <div class="modal-footer">
 
-                                      <button type="button" data-dismiss="modal" (click)="confirme(conge)"
+                                      <button type="button" data-dismiss="modal" (click)="confirme(conge.id)"
                                         class="btn btn-primary">Confirmer</button>
                                     </div>
                                   </div>
@@ -121,57 +125,59 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h5 class="title">Ajouter un Conge</h5>
+                    <h5 class="title">Ajouter un Congé</h5>
                   </div>
                   <div class="card-body">
 
-                    <form [formGroup]="messageForm" >
-                        <div class="row">
-                            <div class="col-md-6 px-1">
-                              <div class="form-group">
-                                <label>Date du départ</label>
-                                <input type="date" class="form-control" placeholder="" formControlName="dateDepart"
-                                  value="michael23">
-    
-                              </div>
-                            </div>
-                            <div class="col-md-6 px-1">
-                              <div class="form-group">
-                                <label>Date du fin</label>
-                                <input type="date" class="form-control" placeholder="" formControlName="dateFin"
-                                  value="michael23">
-    
-                              </div>
-                            </div>
-    
-    
+                    <form [formGroup]="messageForm">
+                      <div class="row">
+                        <div class="col-md-6 px-1">
+                          <div class="form-group">
+                            <label>Début du congé</label>
+                            <input type="date" class="form-control" placeholder="" formControlName="dateDepart"
+                              value="michael23">
+
                           </div>
-                          <div class="row">
-                              <div class="col-md-3 px-1"></div>
-                            <div class="col-md-6 px-1">
-                                <div class="form-group" >
-                                    <label for="inputState">Nom</label>
-                                    <select   id="inputState"  formControlName="personne" class="form-control">
-                                      <option   selected >Choose...</option>
-                                      <option [value]="personne.id" *ngFor="let personne of personnels">{{personne.firstName}}</option>
-                                    </select>
-                                  </div>
-                            </div>
-                            <div class="col-md-3 px-1"></div>
-                            
-    
-    
+                        </div>
+                        <div class="col-md-6 px-1">
+                          <div class="form-group">
+                            <label>Fin du congé</label>
+                            <input type="date" class="form-control" placeholder="" formControlName="dateFin"
+                              value="michael23">
+
                           </div>
+                        </div>
+
+
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 px-1"></div>
+                        <div class="col-md-6 px-1">
+                          <div class="form-group">
+                            <label for="inputState">Nom de l'employé</label>
+                            <select id="inputState" formControlName="personne" class="form-control">
+                              <option selected>Choose...</option>
+                              <option [value]="personne.id" *ngFor="let personne of personnels">{{personne.firstName}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3 px-1"></div>
 
 
 
-                      
+                      </div>
+
+
+
+
                       <div class="row">
                         <div class="col-md-3 px-1"></div>
                         <div class="col-md-3 px-1"></div>
                         <div class="col-md-3 px-1"></div>
                         <div class="col-md-3 px-1">
-                          <button type="submit" (click)="onSubmit()"vclass="cta" class="btn btn-warning">Confirmer</button>
+                          <button type="submit" (click)="onSubmit()" vclass="cta"
+                            class="btn btn-warning">Confirmer</button>
                         </div>
                       </div>
 
