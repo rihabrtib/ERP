@@ -53,6 +53,7 @@ export class MapsComponent implements OnInit {
     })
     this.Submit();
   }
+  
 
   Submit() {
     this.formationservice.getFormation().subscribe(data => {

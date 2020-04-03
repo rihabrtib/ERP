@@ -11,7 +11,7 @@
               <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                 aria-controls="nav-home" aria-selected="true" (click)=inSubmit()>Liste</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Ajouter un Condidat</a>
+                aria-controls="nav-profile" aria-selected="false">Ajouter un Client</a>
 
             </div>
           </nav>
@@ -27,30 +27,24 @@
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead class=" text-primary">
-                          <th scope="col">
-                            Nom
+                        
+                          <th rowspan="3">
+                            Reference
                           </th>
                           <th scope="col">
-                            Prénom
+                            Designation
                           </th>
                           <th scope="col">
-                            Email
+                            P.U.HT
                           </th>
                           <th scope="col">
-                            NumTel
+                           Quantite
                           </th>
                           <th scope="col">
-                            Adresse
+                            Remise
                           </th>
-                          <th scope="col">
-                            cv
-                          </th>
-                          <th scope="col">
-                            payée
-                          </th>
-                          <th scope="col">
-                            Formation
-                          </th>
+                          
+              
                           <th scope="col" class="text-right">
 
                           </th>
@@ -89,7 +83,7 @@
                                           <div class="col-md-6 px-1">
 
                                             <div class="form-group">
-                                              <label for="recipient-name" class="col-form-label">Nom</label>
+                                              <label for="recipient-name" class="col-form-label">Reference</label>
                                               <input type="text" value="{{genre?.firstName}}"
                                                 formControlName="firstName" class="form-control" id="recipient-name">
                                             </div>
@@ -97,7 +91,7 @@
 
                                           <div class="col-md-6 px-1">
                                             <div class="form-group">
-                                              <label for="recipient-name" class="col-form-label"> Prénom</label>
+                                              <label for="recipient-name" class="col-form-label"> Designation</label>
                                               <input type="text" value="{{genre?.lastName}}" formControlName="lastName"
                                                 class="form-control" id="recipient-name">
                                             </div>
@@ -106,33 +100,31 @@
                                         <div class="row">
                                           <div class="col-md-6 px-1">
                                             <div class="form-group">
-                                              <label for="recipient-name" class="col-form-label">Email</label>
+                                              <label for="recipient-name" class="col-form-label">P.U.HT</label>
                                               <input type="text" value="{{genre?.email}}" formControlName="email"
                                                 class="form-control" id="recipient-name">
                                             </div>
                                           </div>
                                           <div class="col-md-6 px-1">
+                                            
                                             <div class="form-group">
-                                              <label for="recipient-name" class="col-form-label">Payée</label>
-                                              <select id="inputState" formControlName="payer" class="form-control">
-
-                                                <option>true</option>
-                                                <option>false</option>
-                                              </select>
+                                              <label for="recipient-name" class="col-form-label">NumTel</label>
+                                              <input type="text" value="{{genre?.numTel}}" formControlName="numTel"
+                                                class="form-control" id="recipient-name">
                                             </div>
                                           </div>
                                         </div>
                                         <div class="row">
                                           <div class="col-md-6 px-1">
                                             <div class="form-group">
-                                              <label for="recipient-name" class="col-form-label">Adresse</label>
+                                              <label for="recipient-name" class="col-form-label">Quantite</label>
                                               <input type="text" value="{{genre?.adresse}}" formControlName="adresse"
                                                 class="form-control" id="recipient-name">
                                             </div>
                                           </div>
                                           <div class="col-md-6 px-1">
                                             <div class="form-group">
-                                              <label for="recipient-name" class="col-form-label">CV</label>
+                                              <label for="recipient-name" class="col-form-label">Remise</label>
                                               <input type="text" value="{{genre?.cv}}" formControlName="cv"
                                                 class="form-control" id="recipient-name">
                                             </div>
@@ -140,20 +132,10 @@
                                         </div>
                                         <div class="row">
                                           <div class="col-md-6 px-1">
-                                            <div class="form-group">
-                                              <label for="recipient-name" class="col-form-label">NumTel</label>
-                                              <input type="text" value="{{genre?.numTel}}" formControlName="numTel"
-                                                class="form-control" id="recipient-name">
-                                            </div>
+                                          
                                           </div>
-                                          <div class="col-md-6 px-1">
-                                            <label>Nom de la formation</label>
-                                            <select id="inputState" value="{{genre?.formation.name}}"
-                                              formControlName="formation" class="form-control">
-                                              <option selected>Choose...</option>
-                                              <option *ngFor="let formation of formations">{{formation.name}}</option>
-                                            </select>
-                                          </div>
+                                          
+                                          
                                         </div>
                                       </form>
                                     </div>
@@ -193,7 +175,7 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h5 class="title">Ajouter un Condidat</h5>
+                    <h5 class="title">Ajouter un Client</h5>
                   </div>
                   <div class="card-body">
 
@@ -274,6 +256,7 @@
                             <select id="inputState" formControlName="formation" class="form-control">
                               <option selected>Choose...</option>
                               <option [value]="formation.id" *ngFor="let formation of formations">{{formation.name}}
+                                
                               </option>
                             </select>
                           </div>

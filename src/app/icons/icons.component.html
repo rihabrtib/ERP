@@ -11,7 +11,7 @@
               <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                 aria-controls="nav-home" aria-selected="true" (click)=inSubmit()>Liste</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Ajouter un Niveau</a>
+                aria-controls="nav-profile" aria-selected="false">Ajouter un Article</a>
 
             </div>
           </nav>
@@ -28,17 +28,20 @@
                       <table class="table table-striped">
                         <thead class=" text-primary">
                           <th scope="col">
-                            Nom
+                            Reference
                           </th>
                           <th scope="col">
-                            NumNiveau
+                            designation
                           </th>
                           <th scope="col">
-                            Description
+                            P.U.HT
                           </th>
                           <th scope="col">
-                            Nom de la Formation
+                           Quantite
                           </th>
+                          <th scope="col">
+                            Remise
+                           </th>
                           <th scope="col" class="text-right">
 
                           </th>
@@ -78,21 +81,21 @@
                                 <div class="modal-body">
                                   <form [formGroup]="messageFormmodif">
                                     <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Nom</label>
+                                      <label for="recipient-name" class="col-form-label">Reference</label>
                                       <input type="text" value="{{genre?.name}}" formControlName="name"
                                         class="form-control" id="recipient-name">
                                     </div>
                                     <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">numNiveau</label>
+                                      <label for="recipient-name" class="col-form-label">designation</label>
                                       <input type="text" value="{{genre?.numNiveau}}" formControlName="numNiveau"
                                         class="form-control" id="recipient-name">
                                     </div>
                                     <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Description</label>
+                                      <label for="recipient-name" class="col-form-label"></label>
                                       <input type="text" value="{{genre?.description}}" formControlName="description"
                                         class="form-control" id="recipient-name">
                                     </div>
-                                    <label>Nom de la formation</label>
+                                    <label>Reference Facture</label>
                                     <select id="inputState" value="{{genre?.formation.name}}"
                                       formControlName="formation" class="form-control">
                                       <option selected>Choose...</option>
@@ -125,7 +128,7 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h5 class="title">Ajouter un Niveau</h5>
+                    <h5 class="title">Ajouter un Article</h5>
                   </div>
                   <div class="card-body">
 
@@ -135,8 +138,8 @@
                         <div class="col-md-2 px-1"></div>
                         <div class="col-md-8 px-1">
                           <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" placeholder="Name" formControlName="name"
+                            <label> Reference</label>
+                            <input type="text" class="form-control" placeholder="Reference" formControlName="name"
                               value="michael23">
 
 
@@ -149,8 +152,8 @@
                         <div class="col-md-2 px-1"></div>
                         <div class="col-md-8 px-1">
                           <div class="form-group">
-                            <label>NumNiveau</label>
-                            <input type="number" class="form-control" placeholder="NumNiveau"
+                            <label>Quantite</label>
+                            <input type="number" class="form-control" placeholder="Quantite"
                               formControlName="numNiveau" value="michael23">
 
                           </div>
@@ -162,8 +165,8 @@
                         <div class="col-md-2 px-1"></div>
                         <div class="col-md-8 px-1">
                           <div class="form-group">
-                            <label>Description</label>
-                            <input type="text" class="form-control" placeholder="Description"
+                            <label>Remise</label>
+                            <input type="text" class="form-control" placeholder="Remise"
                               formControlName="description" value="michael23">
 
 
@@ -176,11 +179,12 @@
 
                         <div class="col-md-4 px-1">
 
-                          <label>Formation</label>
+                          <label>Reference Facture</label>
                           <select id="inputState" formControlName="formation" class="form-control">
                             <option selected>Choose...</option>
                             <option [value]="formation.id" *ngFor="let formation of formations">{{formation.name}}
                             </option>
+                            
                           </select>
                         </div>
 

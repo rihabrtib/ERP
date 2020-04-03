@@ -11,7 +11,7 @@
               <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                 aria-controls="nav-home" aria-selected="true" (click)=inSubmit()>Liste</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Ajouter une formation</a>
+                aria-controls="nav-profile" aria-selected="false">Ajouter une famille</a>
 
             </div>
           </nav>
@@ -28,42 +28,42 @@
                       <table class="table table-striped">
                         <thead class=" text-primary">
                           <th scope="col">
-                            Nom
+                            Reference
                           </th>
                           <th scope="col">
-                            File_Formation
+                            designation
                           </th>
                           <th scope="col">
-                            Type
+                            P.U.HT
                           </th>
+                          <th scope="col">
+                           Quantite
+                          </th>
+                          <th scope="col">
+                            Remise
+                           </th>
                           <th scope="col" class="text-right">
 
                           </th>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let formation of formations">
+                          <tr *ngFor="let niveau of niveaux">
 
-
-                            <td>{{formation.name}}</td>
-                            <td>{{formation.fileFormation}}</td>
-                            <td>{{formation.type}}</td>
+                            <td>{{niveau.name}}</td>
+                            <td>{{niveau.numNiveau}}</td>
+                            <td>{{niveau.description}}</td>
+                            <td>{{niveau.formation.name}}</td>
                             <td class="text-right">
                               <button type="button" rel="tooltip" style="color:LightGreen;  " title=""
                                 class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
-                                data-original-title="Edit Task" (click)="Edit(formation.id)" data-toggle="modal"
+                                data-original-title="Edit Task" (click)="Edit(niveau.id)" data-toggle="modal"
                                 data-target="#exampleModal" data-whatever="@mdo">
                                 <i class="now-ui-icons ui-2_settings-90"></i>
                               </button>
 
-
-
-
-
-
-
                               <button type="button" rel="tooltip" title=""
                                 class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
-                                data-original-title="Remove" (click)="Delete(formation)">
+                                data-original-title="Remove" (click)="Delete(niveau)">
                                 <i class="now-ui-icons ui-1_simple-remove"></i>
                               </button>
                             </td>
@@ -79,33 +79,17 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  <form [formGroup]="messageForm">
-
-                                    <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Name</label>
-                                      <input type="text" value="{{genre?.name}}" formControlName="name"
-                                        class="form-control" id="recipient-name">
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">fileFormation</label>
-                                      <input type="text" value="{{genre?.fileFormation}}"
-                                        formControlName="fileFormation" class="form-control" id="recipient-name">
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Type</label>
-                                      <input type="text" value="{{genre?.type}}" formControlName="type"
-                                        class="form-control" id="recipient-name">
-                                    </div>
-                                  </form>
+                                  
                                 </div>
                                 <div class="modal-footer">
 
-                                  <button type="button" data-dismiss="modal" (click)="Actualise(formation.id)"
+                                  <button type="button" data-dismiss="modal" (click)="Actualise(niveau.id)"
                                     class="btn btn-primary">Confirmer</button>
                                 </div>
                               </div>
                             </div>
                           </div>
+
                         </tbody>
                       </table>
                     </div>
@@ -120,57 +104,11 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h5 class="title">Ajouter une formation</h5>
+                    <h5 class="title">Ajouter une famille</h5>
                   </div>
                   <div class="card-body">
 
-                    <form [formGroup]="messageFormmodif" (ngSubmit)="onSubmit()">
-
-                      <div class="row">
-                        <div class="col-md-2 px-1">
-
-                        </div>
-                        <div class="col-md-8 px-1">
-                          <div class="form-group">
-
-                            <input type="text" class="form-control" placeholder="Name" formControlName="type"
-                              value="michael23">
-
-
-                          </div>
-                        </div>
-                        <div class="col-md-2 px-1"></div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-2 px-1"></div>
-                        <div class="col-md-8 px-1">
-                          <div class="form-group">
-                            <input type="text" class="form-control" placeholder="File_Formation" formControlName="name"
-                              value="michael23">
-                          </div>
-                        </div>
-                        <div class="col-md-2 px-1"></div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-2 px-1"></div>
-                        <div class="col-md-8 px-1">
-                          <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Type" formControlName="fileFormation"
-                              value="michael23">
-                          </div>
-                        </div>
-                        <div class="col-md-2 px-1"></div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-3 px-1"></div>
-                        <div class="col-md-3 px-1"></div>
-                        <div class="col-md-3 px-1"></div>
-                        <div class="col-md-3 px-1">
-                          <button type="submit" vclass="cta" class="btn btn-warning">Confirmer</button>
-                        </div>
-                      </div>
-
-                    </form>
+                    
 
 
 
